@@ -34,7 +34,8 @@ $(function() {
         it('has Url', function() {
             allFeeds.forEach(function(feed) {
              expect(feed.url).toBeDefined();
-             expect(feed.url).not.toBe(undefined);
+             expect(feed.url).not.toBe('');
+             expect(feed.url.length).not.toBe(0);
             });
         });
         /* TODO: Write a test that loops through each feed
@@ -71,7 +72,7 @@ $(function() {
          * hiding/showing of the menu element.
          */
         it("Menu is hidden", function() {
-            expect(menuHiddenClass.className).toBe('menu-hidden');
+            expect($("body").hasClass('menu-hidden')).toBe(true);
         });
 
          /* TODO: Write a test that ensures the menu changes
