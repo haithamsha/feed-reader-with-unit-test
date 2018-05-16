@@ -41,8 +41,8 @@ function init() {
  * which will be called after everything has run successfully.
  */
 var loadcompleted = false;
-var loadAllFeeds = false;
-
+var boforeLoadContainer = "";
+var afterLoadContainer = "";
  function loadFeed(id, cb) {
      var feedUrl = allFeeds[id].url,
          feedName = allFeeds[id].name;
@@ -52,15 +52,14 @@ var loadAllFeeds = false;
        url: 'https://rsstojson.udacity.com/parseFeed',
        data: JSON.stringify({url: feedUrl}),
        contentType:"application/json",
-       success: function (result, status){
-           loadcompleted = true;
+       success: function (result, status) {
                  var container = $('.feed'),
                      title = $('.header-title'),
                      entries = result.feed.entries,
                      entriesLen = entries.length,
                      entryTemplate = Handlebars.compile($('.tpl-entry').html());
-
                  title.html(feedName);   // Set the header text
+                 boforeLoadContainer = $(".feed").html();
                  container.empty();      // Empty out all previous entries
 
                  /* Loop through the entries we just loaded via the Google
@@ -71,7 +70,10 @@ var loadAllFeeds = false;
                  entries.forEach(function(entry) {
                      container.append(entryTemplate(entry));
                  });
-                loadAllFeeds = true;
+                 // update afterLoadContainer variable
+                 afterLoadContainer  = container.html();
+                // Update loadCompleted flag to true when the .feed class binded.
+                loadcompleted = true;
                  if (cb) {
                      cb();
                  }

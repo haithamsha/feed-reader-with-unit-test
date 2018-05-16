@@ -16,6 +16,10 @@ Whether you work in an organization that uses test-driven development or in an o
 
 -- Test the asynchronous function `loadFeed` to make sure it is success to get the data from the server and test it again to make sure the data has been binded successfully.
 
-# How to use
+# How to use.
 Just run npm install so that install all dependances.
+
+# How to open the app.
+You can host the app on a remote server or run it locally on your local host server.
+I recommeded to use [vs code](https://code.visualstudio.com/), so you can use live server plugin to run the app on your local host.
 
